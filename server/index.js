@@ -27,6 +27,24 @@ app.use("/api/user", require("./routes/userRoute"));
 // Handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+// socket server
+const http = require("http").createServer(app);
+const io = require("socket.io")(http, {
+  cors: {
+    origins: ["http://localhost:3000"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("a user connect");
+  socket.on("disconnect", () => {
+    console.log("a user disconnected");
+  });
+  socket.on("ping", () => {
+    io.emit("pong");
+  });
+});
+
+http.listen(PORT, () => {
   console.log(`The server is running on port ${PORT}`);
 });
