@@ -5,21 +5,23 @@ export const SytledRoomList = styled.div`
   width: 15rem;
   color: #fff;
 
-  h3 {
-    display: block;
+  .groupName {
     width: 100%;
     text-align: center;
-    margin-bottom: 2rem;
+    padding: 2rem 0;
+    font-size: 1.5rem;
     font-weight: 600;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   }
 
   ul {
-    margin: 0;
+    margin-top: 1.5rem;
     padding-left: 1rem;
     list-style: none;
   }
 
   li {
+    margin: 1rem 0;
   }
 
   a {
