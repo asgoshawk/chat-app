@@ -32,16 +32,25 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http, {
   cors: {
     origins: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
   },
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connect");
+  console.log(`User (${socket.id}) connected.`);
+
   socket.on("disconnect", () => {
-    console.log("a user disconnected");
+    console.log(`User (${socket.id}) disconnected.`);
   });
-  socket.on("ping", () => {
-    io.emit("pong");
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User (${socket.id}) join the room (${data})`);
+  });
+
+  socket.on("send_message", (data) => {
+    console.log(data);
+    socket.to(data.room.id).emit("receive_message", data);
   });
 });
 
