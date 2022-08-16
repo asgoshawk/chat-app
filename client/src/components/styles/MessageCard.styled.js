@@ -9,7 +9,6 @@ export const StyledMessageCard = styled.div`
   }
 
   .avatar {
-    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,6 +17,14 @@ export const StyledMessageCard = styled.div`
     height: 2.5rem;
     border-radius: 50%;
     margin: 0 1rem;
+
+    span {
+      display: inline-block;
+      color: black;
+      font-size: 1.5rem;
+      vertical-align: middle;
+      line-height: normal;
+    }
   }
 
   .message {

@@ -4,7 +4,11 @@ const MessageCard = ({ message, reverse }) => {
   return (
     <StyledMessageCard>
       <div className="avatar">
-        {message.avatarImg ? "" : message.author.charAt(0)}
+        {message.avatarImg ? (
+          <span></span>
+        ) : (
+          <span>{message.author.charAt(0)}</span>
+        )}
       </div>
       <div className="message">
         <div className="messageAuthor">{message.author}</div>
