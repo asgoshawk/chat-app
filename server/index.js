@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 
 // API Routes
 app.use("/api/user", require("./routes/userRoute"));
+app.use("/api/upload", require("./routes/uploadRoute"));
 
 // Handler
 app.use(errorHandler);
