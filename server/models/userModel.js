@@ -19,8 +19,15 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please add a password."],
     },
     avatar: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
     },
+    groups: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamps: true,
