@@ -5,12 +5,14 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       lowercase: true,
+      trim: true,
       required: [true, "Please add a user name."],
       unique: true,
     },
     email: {
       type: String,
       lowercase: true,
+      trim: true,
       required: [true, "Please add an email."],
       unique: true,
     },
@@ -25,7 +27,7 @@ const userSchema = new mongoose.Schema(
     groups: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Group",
       },
     ],
   },

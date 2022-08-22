@@ -1,9 +1,15 @@
 const express = require("express");
-const { uploadAvatar } = require("../controllers/uploadController");
+const {
+  uploadAvatar,
+  deleteAvatar,
+} = require("../controllers/uploadController");
 const router = express.Router();
 const { upload } = require("../config/upload");
 const { protect } = require("../middlewares/authMiddleware");
 
-router.post("/avatar", upload.single("avatar"), uploadAvatar);
+router
+  .route("/avatar")
+  .post(protect, upload.single("avatar"), uploadAvatar)
+  .delete(protect, deleteAvatar);
 
 module.exports = router;

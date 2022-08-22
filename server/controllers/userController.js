@@ -11,11 +11,11 @@ const generateToken = (id) => {
 };
 
 // @desc    Register
-// @route   /api/user
+// @route   POST /api/user/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-
+  console.log(req.body);
   // Validation
   if (!name || !email || !password) {
     res.status(400);
@@ -38,7 +38,6 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPasswaord,
-    avatar: "",
   });
 
   if (user) {
@@ -56,7 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 // @desc    Login a user
-// @route   /api/user/login
+// @route   POST /api/user/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -78,7 +77,7 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 // @desc    Get current user profile
-// @route   /api/user/profile
+// @route   GET /api/user/profile
 // @access  Private
 const getProfile = asyncHandler(async (req, res) => {
   const user = {
@@ -90,8 +89,35 @@ const getProfile = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 });
 
+// @desc    Update user profile
+// @route   PUT /api/user/profile
+// @access  Private
+const updateProfile = asyncHandler(async (req, res) => {});
+
+// @desc    Get or search users
+// @route   GET /api/user?search=
+// @access  Private
+const getUsers = asyncHandler(async (req, res) => {
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyword)
+    .find({ _id: { $ne: req.user._id } })
+    .select("-password");
+
+  res.send(users);
+});
+
 module.exports = {
   loginUser,
   registerUser,
   getProfile,
+  updateProfile,
+  getUsers,
 };
