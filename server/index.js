@@ -24,6 +24,8 @@ app.get("/", (req, res) => {
 // API Routes
 app.use("/api/user", require("./routes/userRoute"));
 app.use("/api/upload", require("./routes/uploadRoute"));
+app.use("/api/chat", require("./routes/chatRoute"));
+app.use("/api/message", require("./routes/messageRoute"));
 
 // Handler
 app.use(errorHandler);

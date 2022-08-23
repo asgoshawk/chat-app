@@ -6,12 +6,11 @@ const roomSchema = new mongoose.Schema(
       type: String,
       require: [true, "Please add a room name."],
     },
-    messages: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Message",
-      },
-    ],
+    group: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Group",
+      require: true,
+    },
   },
   {
     timestamps: true,

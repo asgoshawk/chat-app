@@ -20,12 +20,6 @@ const groupSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
-    rooms: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Room",
-      },
-    ],
   },
   {
     timestamps: true,
