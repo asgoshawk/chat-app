@@ -4,6 +4,7 @@ import Room from "../components/Room";
 import RoomList from "../components/RoomList";
 import { ChatContainer } from "../components/styles/Container.styled";
 import io from "socket.io-client";
+import NavBar from "../components/NavBar";
 
 const socket = io();
 
@@ -14,10 +15,13 @@ const Chat = () => {
   });
 
   return (
-    <ChatContainer>
-      <RoomList />
-      <Room socket={socket} room={room} />
-    </ChatContainer>
+    <>
+      <NavBar />
+      <ChatContainer>
+        <RoomList />
+        <Room socket={socket} room={room} />
+      </ChatContainer>
+    </>
   );
 };
 
