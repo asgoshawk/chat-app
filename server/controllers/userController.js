@@ -15,7 +15,7 @@ const generateToken = (id) => {
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-  console.log(req.body);
+  //   console.log(req.body);
   // Validation
   if (!name || !email || !password) {
     res.status(400);

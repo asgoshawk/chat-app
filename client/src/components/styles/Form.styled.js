@@ -12,6 +12,7 @@ export const StyledForm = styled.div`
   justify-content: center;
 
   form {
+    opacity: 0.9;
     width: 30rem;
     padding: 2rem;
     background-color: rgb(54, 57, 63);
@@ -38,6 +39,10 @@ export const StyledForm = styled.div`
       margin-bottom: 0.5rem;
     }
 
+    label.warning {
+      color: #f04747;
+    }
+
     input {
       background-color: rgb(32, 34, 37);
       border: none;
@@ -50,13 +55,20 @@ export const StyledForm = styled.div`
     }
 
     button {
+      cursor: pointer;
+      position: relative;
       width: 100%;
-      background-color: rgb(88, 101, 242);
+      background-color: hsl(235, 86%, 65%);
       outline: none;
       border: none;
       border-radius: 3px;
       height: 2.5rem;
       color: white;
+      transition: 0.17s all ease-in-out;
+
+      &:hover {
+        background-color: hsla(235, 86%, 65%, 0.8);
+      }
     }
 
     a {

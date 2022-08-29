@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 import StyledGlobal from "./components/styles/Global.styled";
@@ -17,6 +19,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </>
   );
 }
