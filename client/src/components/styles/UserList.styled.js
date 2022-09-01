@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SytledRoomList = styled.div`
+export const SytledUserList = styled.div`
   background-color: rgb(47, 49, 54);
   width: 15rem;
   color: #fff;

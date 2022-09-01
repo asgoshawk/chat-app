@@ -52,10 +52,36 @@ export const StyledNavbar = styled.div`
     transition: all 0.1s ease-in-out;
   }
 
+  .groupCircle.home {
+    color: #99aab5;
+  }
+
+  .groupCircle.plus {
+    color: green;
+  }
+
+  .seperator-outter {
+    display: flex;
+    justify-content: center;
+    div {
+      background-color: #36393f;
+      width: 50px;
+      height: 1.25px;
+    }
+  }
+
   li:hover {
     .groupCircle {
       border-radius: 25%;
+      color: white;
+      background-color: #7289da;
     }
+
+    .groupCircle.plus {
+      color: white;
+      background-color: green;
+    }
+
     .indicator {
       height: 25px;
     }

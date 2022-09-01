@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import Room from "../components/Room";
-import RoomList from "../components/RoomList";
 import { ChatContainer } from "../components/styles/Container.styled";
 import io from "socket.io-client";
 import NavBar from "../components/NavBar";
+import UserList from "../components/UserList";
 
 const socket = io();
 
@@ -18,7 +18,7 @@ const Chat = () => {
     <>
       <NavBar />
       <ChatContainer>
-        <RoomList />
+        <UserList />
         <Room socket={socket} room={room} />
       </ChatContainer>
     </>

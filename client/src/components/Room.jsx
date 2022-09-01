@@ -60,7 +60,7 @@ const Room = ({ socket, room }) => {
     <StyledRoom>
       {room && (
         <>
-          <div className="roomHeader">{room.name}</div>
+          <div className="roomHeader">Chat Room</div>
           <div className="roomMain">
             <div className="roomBody">
               {messageList.map((item, index) => (
@@ -84,7 +84,6 @@ const Room = ({ socket, room }) => {
               </div>
             </div>
           </div>
-          <div className="roomMembers"></div>
         </>
       )}
     </StyledRoom>

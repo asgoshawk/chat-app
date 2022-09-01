@@ -23,20 +23,11 @@ export const StyledRoom = styled.div`
     box-shadow: 0 2px 4px -4px black;
   }
 
-  .roomMain,
-  .roomMembers {
-    float: left;
-    padding: 3.5rem 0.5rem 0;
-    height: 100%;
-  }
-
-  .roomMembers {
-    background-color: rgb(47, 49, 54);
-    width: 10rem;
-  }
-
   .roomMain {
     width: calc(100% - 10rem);
+    float: left;
+    height: 100%;
+    padding: 3.5rem 0.5rem 0;
   }
 
   .roomBody {
