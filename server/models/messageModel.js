@@ -15,10 +15,6 @@ const messageSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Group",
     },
-    room: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Room",
-    },
   },
   { timestamps: true }
 );

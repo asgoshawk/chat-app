@@ -2,31 +2,18 @@ const asyncHandler = require("express-async-handler");
 const Group = require("../models/groupModel");
 const Image = require("../models/imageModel");
 const Message = require("../models/messageModel");
-const Room = require("../models/roomModel");
 const User = require("../models/userModel");
 
 // @desc    Post message
 // @route   POST /api/message/
 // @access  Private
 const sendMessage = asyncHandler(async (req, res) => {
-  const { content, roomId } = req.body;
-
-  if (!content || !roomId) {
-    res.status(400);
-    throw new Error("Invalid message data request.");
-  }
-
-  const room = await Room.findById(roomId);
-  if (!room) {
-    res.status(400);
-    throw new Error("The room doesn't exist.");
-  }
+  const { content, groupId } = req.body;
 
   const newMessage = {
     sender: req.user._id,
     content: content,
-    group: room.group._id,
-    room: roomId,
+    group: groupId,
   };
 
   try {
@@ -55,10 +42,11 @@ const getAllMessages = asyncHandler(async (req, res) => {
     throw new Error("The group doesn't exist.");
   }
 
-  // Check the user is in the group where the room located.
+  // Check the user is in the group.
   const userExists = await Group.findById(groupId).find({
     users: req.user._id,
   });
+
   if (!userExists) {
     res.status(400);
     throw new Error("User has no access to these messages.");
