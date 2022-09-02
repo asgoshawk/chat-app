@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import StyledGlobal from "./components/styles/Global.styled";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <StyledGlobal />
       <Router>
         <Routes>
-          <Route path="/" element={<Chat />} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<Chat />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />

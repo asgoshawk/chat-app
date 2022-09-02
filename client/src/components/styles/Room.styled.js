@@ -24,7 +24,7 @@ export const StyledRoom = styled.div`
   }
 
   .roomMain {
-    width: calc(100% - 10rem);
+    width: 100%;
     float: left;
     height: 100%;
     padding: 3.5rem 0.5rem 0;

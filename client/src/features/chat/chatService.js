@@ -20,8 +20,7 @@ const createGroup = async (groupData, token) => {
     }
     groups = [...groups, response.data.group];
     localStorage.setItem("groups", JSON.stringify(groups));
-    localStorage.setItem("curGroup", JSON.stringify(response.data.group));
-    localStorage.setItem("curRoom", JSON.stringify(response.data.room));
+    localStorage.setItem("group", JSON.stringify(response.data.group));
   }
   return response.data;
 };
@@ -50,7 +49,7 @@ const getGroup = async (groupId, token) => {
   const response = await axios.get(API_URL + `group/${groupId}`, config);
   if (response.data) {
     if (response.data.isMember) {
-      localStorage.setItem("curGroup", JSON.stringify(response.data.group));
+      localStorage.setItem("group", JSON.stringify(response.data.group));
     }
   }
   return response.data;
@@ -63,7 +62,7 @@ const joinGroup = async (groupId, token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.get(API_URL + `group/${groupId}/join`, token);
+  const response = await axios.get(API_URL + `group/${groupId}/join`, config);
   if (response.data) {
     if (response.data.newMember) {
       let groups = localStorage.getItem("groups");
@@ -75,7 +74,7 @@ const joinGroup = async (groupId, token) => {
       groups = [...groups, response.data.group];
       localStorage.setItem("groups", JSON.stringify(groups));
     }
-    localStorage.setItem("curGroup", JSON.stringify(response.data.group));
+    localStorage.setItem("group", JSON.stringify(response.data.group));
   }
   return response.data;
 };
@@ -84,4 +83,5 @@ module.exports = {
   getGroup,
   getGroups,
   createGroup,
+  joinGroup,
 };
