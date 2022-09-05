@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Common from "./pages/Common";
 import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 import StyledGlobal from "./components/styles/Global.styled";
@@ -15,7 +16,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
-            <Route path="/" element={<Chat />} />
+            <Route path="/" element={<Common />} />
+          </Route>
+          <Route path="/group/:id" element={<PrivateRoute />}>
+            <Route path="/group/:id" element={<Chat />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

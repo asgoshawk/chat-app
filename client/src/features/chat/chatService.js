@@ -79,9 +79,11 @@ const joinGroup = async (groupId, token) => {
   return response.data;
 };
 
-module.exports = {
+const chatService = {
   getGroup,
   getGroups,
   createGroup,
   joinGroup,
 };
+
+export default chatService;

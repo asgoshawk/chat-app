@@ -7,13 +7,18 @@ import {
   FaMeteor,
 } from "react-icons/fa";
 import { StyledNavbar } from "./styles/NavBar.styled";
-
-const groups = [
-  { groupName: "Test1", groupId: "01" },
-  { groupName: "Test2", groupId: "02" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { getGroups } from "../features/chat/chatSlice";
+import { useEffect } from "react";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const { groups } = useSelector((state) => state.chat);
+
+  useEffect(() => {
+    dispatch(getGroups());
+  }, []);
+  console.log(groups);
   return (
     <StyledNavbar>
       <ul>
@@ -30,16 +35,17 @@ const NavBar = () => {
           <div className="seperator-inner"></div>
         </div>
 
-        {groups.map((item, index) => (
-          <li key={index}>
-            <Link to="/">
-              <div className="indicator"></div>
-              <div className="groupCircle">
-                <p>T</p>
-              </div>
-            </Link>
-          </li>
-        ))}
+        {groups &&
+          groups.map((item, index) => (
+            <li key={index}>
+              <Link to={`/group/${item._id}`}>
+                <div className="indicator"></div>
+                <div className="groupCircle">
+                  <p>{item.name[0]}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
 
         <li>
           <Link to="/">

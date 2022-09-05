@@ -92,5 +92,24 @@ export const chatSlice = createSlice({
   reducers: {
     reset: (state) => initialState,
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getGroups.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getGroups.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        console.log(action.payload);
+        state.groups = action.payload;
+      })
+      .addCase(getGroups.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.errorMessage = action.payload;
+      });
+  },
 });
+
+export const { reset } = chatSlice.actions;
+export default chatSlice.reducer;
