@@ -108,13 +108,13 @@ const joinGroup = asyncHandler(async (req, res) => {
 // @access  Private
 const getAllGroups = asyncHandler(async (req, res) => {
   try {
-    let groups = await Group.find({ users: req.user._id })
+    let groups = await Group.find({
+      users: { $elemMatch: { $eq: req.user._id } },
+    })
       .populate("users", "name avatar")
       .populate("groupAdmin", "name avatar");
 
-    res.status(200).json({
-      groups,
-    });
+    res.status(200).json(groups);
   } catch (error) {
     res.status.apply(400);
     throw new Error(error);

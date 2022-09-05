@@ -4,6 +4,7 @@ const {
   createGroup,
   getGroup,
   getAllGroups,
+  joinGroup,
 } = require("../controllers/chatController");
 const { protect } = require("../middlewares/authMiddleware");
 
